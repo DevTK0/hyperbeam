@@ -5,7 +5,7 @@ import Hyperbeam, { HyperbeamEmbed } from "@hyperbeam/web";
 
 export default function Home() {
     const div = useRef<HTMLDivElement>(null);
-    let hyperbeam: HyperbeamEmbed | undefined;
+    const hyperbeam = useRef<HyperbeamEmbed>();
 
     useEffect(() => {
         fetch("api/createhb")
@@ -14,7 +14,7 @@ export default function Home() {
                 if (div.current != null) {
                     Hyperbeam(div.current, res["embedUrl"])
                         .then((hb) => {
-                            hyperbeam = hb;
+                            hyperbeam.current = hb;
                         })
                         .catch((error) => {
                             console.log(error);
@@ -26,7 +26,7 @@ export default function Home() {
             });
 
         return () => {
-            hyperbeam?.destroy();
+            hyperbeam.current?.destroy();
         };
     }, []);
 
