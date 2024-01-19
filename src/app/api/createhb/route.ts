@@ -1,4 +1,6 @@
 import { getRegionInfo } from "@hyperbeam/web";
+import { NextResponse } from "next/server";
+
 export async function GET(request: Request) {
     let embedUrl;
     const region = await getRegionInfo();
@@ -70,5 +72,5 @@ export async function GET(request: Request) {
         embedUrl = session["embed_url"];
     }
 
-    return Response.json({ embedUrl });
+    return NextResponse.json({ embedUrl });
 }
