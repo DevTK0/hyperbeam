@@ -17,7 +17,7 @@ export async function GET(request: Request) {
 
     // search for sessions
     if (sessions?.results?.length > 0) {
-        const session_id = sessions.data.results[0]["id"];
+        const session_id = sessions.results[0]["id"];
         const session = await fetch(
             "https://engine.hyperbeam.com/v0/vm/" + session_id,
             {
