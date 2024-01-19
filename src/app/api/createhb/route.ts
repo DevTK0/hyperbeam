@@ -16,7 +16,7 @@ export async function GET(request: Request) {
     console.log(sessions);
 
     // search for sessions
-    if (sessions?.results.length > 0) {
+    if (sessions?.results?.length > 0) {
         const session_id = sessions.data.results[0]["id"];
         const session = await fetch(
             "https://engine.hyperbeam.com/v0/vm/" + session_id,
@@ -34,9 +34,9 @@ export async function GET(request: Request) {
         embedUrl = session["embed_url"];
         console.log(session);
 
-        if (sessions.results.length > 1) {
-            console.log("multiple sessions exist");
-        }
+        // if (sessions.results.length > 1) {
+        //     console.log("multiple sessions exist");
+        // }
     } else {
         const body = JSON.stringify({
             region: region,
